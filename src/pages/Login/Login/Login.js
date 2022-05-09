@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef} from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
@@ -12,16 +12,39 @@ const Login = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate();
     const location = useLocation();
+    const [user] = useAuthState(auth);
+    const [
+        signInWithEmailAndPassword,
+        loginUser,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+
+    useEffect(() => {
+        if(loginUser){
+          const url = 'http://localhost:5000/login';
+          fetch(url, {
+                method: "POST",
+                body: JSON.stringify({
+                    email: loginUser.user.email
+                }),
+                headers: {
+                    'content-type': 'application/json'
+                },
+            })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('accessToken', data.Token)
+                navigate(from, {replace: true});
+            })
+        }
+    },[loginUser])
 
     const from = location.state?.from?.pathname || "/";
     let errorElement;
 
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useSignInWithEmailAndPassword(auth);
+    
+    
 
       const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
@@ -34,22 +57,9 @@ const Login = () => {
       }
 
       if(user) {
-        //   const url = 'http://localhost:5000/login';
-        // fetch(url, {
-        //       method: "POST",
-        //       body: JSON.stringify({
-        //           email: user.email
-        //       }),
-        //       headers: {
-        //           'content-type': 'application/json'
-        //       },
-        //   })
-        //   .then(res => res.json())
-        //   .then(data => {
-        //       localStorage.setItem('accessToken', data.accessToken)
-        //   })
-          navigate(from, {replace: true});
+        //   navigate(from, {replace: true});
       }
+      
 
       const handleSubmit = async (event) => {
           event.preventDefault();
@@ -57,7 +67,7 @@ const Login = () => {
           const password = passwordRef.current.value;
 
           await signInWithEmailAndPassword(email, password);
-          
+          event.target.reset();
       }
 
       const handleReset = async() => {
