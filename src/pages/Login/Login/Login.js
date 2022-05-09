@@ -34,6 +34,20 @@ const Login = () => {
       }
 
       if(user) {
+        //   const url = 'http://localhost:5000/login';
+        // fetch(url, {
+        //       method: "POST",
+        //       body: JSON.stringify({
+        //           email: user.email
+        //       }),
+        //       headers: {
+        //           'content-type': 'application/json'
+        //       },
+        //   })
+        //   .then(res => res.json())
+        //   .then(data => {
+        //       localStorage.setItem('accessToken', data.accessToken)
+        //   })
           navigate(from, {replace: true});
       }
 
@@ -43,6 +57,7 @@ const Login = () => {
           const password = passwordRef.current.value;
 
           await signInWithEmailAndPassword(email, password);
+          
       }
 
       const handleReset = async() => {
@@ -68,7 +83,7 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control ref={passwordRef} type="password" placeholder="Password" required/>
                 </Form.Group>
-                <Button variant="primary" type="submit" className='d-block mx-auto w-50'>
+                <Button variant="primary" type="submit" className='d-block mx-auto w-75'>
                     Login
                 </Button>
             </Form>

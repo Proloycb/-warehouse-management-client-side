@@ -12,6 +12,8 @@ import RequireAuth from './pages/Login/RequireAuth/RequireAuth';
 import AddNewItem from './pages/AddNewItem/AddNewItem';
 import Login from './pages/Login/Login/Login';
 import Register from './pages/Login/Register/Register';
+import Blogs from './pages/Blogs/Blogs';
+import MyItems from './pages/MyItems/MyItems';
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/blogs' element={<Blogs/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/inventory/:id' element={
@@ -35,6 +38,11 @@ function App() {
         <Route path='/addNewItem' element={
           <RequireAuth>
             <AddNewItem/>
+          </RequireAuth>
+        }/>
+        <Route path='/myItems' element={
+          <RequireAuth>
+            <MyItems/>
           </RequireAuth>
         }/>
         <Route path='*' element={<NotFound/>}/>
