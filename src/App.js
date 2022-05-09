@@ -8,7 +8,7 @@ import ManageInventories from './pages/ManageInventories/ManageInventories';
 import NotFound from './pages/Shared/NotFound/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import RequirAuth from './pages/Login/RequireAuth/RequirAuth';
+import RequireAuth from './pages/Login/RequireAuth/RequireAuth';
 import AddNewItem from './pages/AddNewItem/AddNewItem';
 import Login from './pages/Login/Login/Login';
 import Register from './pages/Login/Register/Register';
@@ -23,19 +23,19 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/inventory/:id' element={
-          <RequirAuth>
+          <RequireAuth>
             <InventoryDetail/>
-          </RequirAuth>
+          </RequireAuth>
         }/>
         <Route path='/manage' element={
-          <RequirAuth>
+          <RequireAuth>
             <ManageInventories/>
-          </RequirAuth>
+          </RequireAuth>
         }/>
         <Route path='/addNewItem' element={
-          <RequirAuth>
+          <RequireAuth>
             <AddNewItem/>
-          </RequirAuth>
+          </RequireAuth>
         }/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>

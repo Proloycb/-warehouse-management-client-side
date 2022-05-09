@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useInventories from '../../hooks/useInventories';
 import Loading from '../Shared/Loading/Loading';
 import TableRow from '../TableRow/TableRow';
 
 const ManageInventories = () => {
     const [inventories, setInventories] = useInventories();
+    const navigate = useNavigate();
 
     if (inventories.length === 0) {
         return <Loading/> ;
@@ -55,7 +56,7 @@ const ManageInventories = () => {
                     </div>
                 </div>
             </div>
-            <p className='text-end m-0'><button as={Link} to='/addNewItem' className="btn btn-success">Add New Item</button></p>
+            <p className='text-end m-0'><button onClick={() => navigate('/addNewItem')} className="btn btn-success">Add New Item</button></p>
         </div>
     );
 };

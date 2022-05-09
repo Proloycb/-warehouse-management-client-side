@@ -5,6 +5,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
     const nameRef = useRef('');
@@ -40,8 +41,8 @@ const Register = () => {
           const email = emailRef.current.value;
           const password = passwordRef.current.value;
           
-          sendEmailVerification(email);
           await createUserWithEmailAndPassword(email, password);
+          await sendEmailVerification(email);
           console.log(name);
           navigate('/home')
           toast('Registration completed')
@@ -65,6 +66,7 @@ const Register = () => {
             </Form>
             <p>{errorElement}</p>
             <p>Already Have an account?<Link to='/login' className='text-primary text-decoration-none'>Please Login</Link></p>
+            <SocialLogin/>
         </div>
     );
 };

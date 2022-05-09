@@ -1,10 +1,15 @@
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useInventories from '../../../hooks/useInventories';
+import Loading from '../../Shared/Loading/Loading';
 import Inventory from '../Inventory/Inventory';
 
 const Inventories = () => {
     const [inventories] = useInventories()
+
+    if(inventories.length === 0){
+        return <Loading/>
+    }
     return (
         <div className='container'>
             <h2 className='text-center text-success mt-5'>Our Inventories</h2>
