@@ -1,11 +1,10 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useInventories from '../../hooks/useInventories';
 import Loading from '../Shared/Loading/Loading';
 import TableRow from '../TableRow/TableRow';
 
 const ManageInventories = () => {
     const [inventories, setInventories] = useInventories();
-    const navigate = useNavigate();
 
     if (inventories.length === 0) {
         return <Loading/> ;
@@ -28,7 +27,7 @@ const ManageInventories = () => {
 
     return (
         <div className='container'>
-            <div className="row my-5">
+            <div className="row my-3">
                 <div className="col">
                     <h5 className='text-center text-color mb-4'>All Inventories</h5>
                     <div className="table-responsive">
@@ -56,7 +55,7 @@ const ManageInventories = () => {
                     </div>
                 </div>
             </div>
-            {/* <p className='text-end m-0 py-4'><button onClick={navigate('/addNewInventory')} className="btn custom-btn">Add new item</button></p> */}
+            <p className='text-end m-0'><button as={Link} to='/addNewItem' className="btn btn-success">Add New Item</button></p>
         </div>
     );
 };
