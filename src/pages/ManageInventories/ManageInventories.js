@@ -3,19 +3,20 @@ import useInventories from '../../hooks/useInventories';
 import TableRow from '../TableRow/TableRow';
 
 const ManageInventories = () => {
-    const {id} = useParams();
     const [inventories, setInventories] = useInventories();
     const navigate = useNavigate();
 
-    if (inventories.length === 0) {
-        return ;
-    }
+    // if (inventories.length === 0) {
+    //     return ;
+    // }
 
-    const handleDelete = () => {
+    const handleDelete = (id) => {
         const proceed = window.confirm("Are you sure to delete");
         if(proceed){
             const url = `http://localhost:5000/inventory/${id}`;
-            fetch(url)
+            fetch(url, {
+                method: "DELETE"
+            })
             .then(res => res.json())
             .then(data => {
                 const remaining = inventories.filter(inventory => inventory._id !== id);
@@ -46,7 +47,7 @@ const ManageInventories = () => {
                                    inventories.map(inventory => <TableRow 
                                     key={inventory._id}
                                     inventory={inventory}
-                                    handleDelete={handleDelete}
+                                    handleDelete={() => handleDelete(inventory._id)}
                                    /> )
                                }
                            </tbody>
@@ -54,7 +55,7 @@ const ManageInventories = () => {
                     </div>
                 </div>
             </div>
-            <p className='text-end m-0 py-4'><button onClick={navigate('/addNewInventory')} className="btn custom-btn">Add new item</button></p>
+            {/* <p className='text-end m-0 py-4'><button onClick={navigate('/addNewInventory')} className="btn custom-btn">Add new item</button></p> */}
         </div>
     );
 };
