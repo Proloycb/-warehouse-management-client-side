@@ -1,14 +1,15 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import useInventories from '../../hooks/useInventories';
+import Loading from '../Shared/Loading/Loading';
 import TableRow from '../TableRow/TableRow';
 
 const ManageInventories = () => {
     const [inventories, setInventories] = useInventories();
     const navigate = useNavigate();
 
-    // if (inventories.length === 0) {
-    //     return ;
-    // }
+    if (inventories.length === 0) {
+        return <Loading/> ;
+    }
 
     const handleDelete = (id) => {
         const proceed = window.confirm("Are you sure to delete");
