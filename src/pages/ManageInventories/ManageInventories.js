@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useInventories from '../../hooks/useInventories';
 import TableRow from '../TableRow/TableRow';
 
 const ManageInventories = () => {
+    const {id} = useParams();
     const [inventories, setInventories] = useInventories();
     const navigate = useNavigate();
 
