@@ -7,6 +7,8 @@ import Footer from './pages/Shared/Footer/Footer';
 import InventoryDetail from './pages/InventoryDetail/InventoryDetail';
 import ManageInventories from './pages/ManageInventories/ManageInventories';
 import NotFound from './pages/Shared/NotFound/NotFound';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path='*' element={<NotFound/>}/>
       </Routes>
       <Footer/>
+      <ToastContainer/>
     </div>
   );
 }

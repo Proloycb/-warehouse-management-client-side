@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import useInventoryDetail from '../../hooks/useInventoryDetail';
+import { toast } from 'react-toastify';
 
 const InventoryDetail = () => {
     const { id } = useParams();
@@ -38,7 +38,7 @@ const InventoryDetail = () => {
                 
         }
         else{
-            alert('product sold out')
+            toast('product sold out')
         }
     }
 
@@ -63,7 +63,7 @@ const InventoryDetail = () => {
                 event.target.reset();
             });
         }else {
-            alert ("Negative/String Value Not Added")
+            toast.error ("Negative/String Value Not Added")
         }
     }
 
