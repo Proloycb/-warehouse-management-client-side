@@ -1,8 +1,16 @@
-# Getting Started with Create React App
+# Gym Equipment Warehouse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live site link: [ https://gym-equipment-warehouse-7ae7e.web.app]( https://gym-equipment-warehouse-7ae7e.web.app).
 
-## Available Scripts
+## This is gym equipment warehouse management website.
+
+## Features
+
+* There are many inventories of gym equipment
+* There are home page this page also 4 section
+* There are on latest news page
+* There are blogs page on this page I will answer some question
+* This website also be implement register/ login.
 
 In the project directory, you can run:
 
