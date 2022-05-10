@@ -10,7 +10,7 @@ const InventoryDetail = () => {
     const [isReload, setIsReload] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/inventory/${id}`)
+        fetch(`https://young-basin-02785.herokuapp.com/inventory/${id}`)
         .then(res => res.json())
         .then(data => setInventory(data))
     },[isReload])
@@ -22,7 +22,7 @@ const InventoryDetail = () => {
         if (newQuantity > 0) {
             const updateQuantity = newQuantity - 1;
             
-            const url = `http://localhost:5000/updateQuantity/${id}`;
+            const url = `https://young-basin-02785.herokuapp.com/updateQuantity/${id}`;
             fetch(url, {
                 method: "PUT",
                 headers: {
@@ -50,7 +50,7 @@ const InventoryDetail = () => {
         if(newQuantity >= 0) {
             const updateQuantity = oldQuantity + newQuantity;
 
-            fetch(`http://localhost:5000/updateQuantity/${id}`, {
+            fetch(`https://young-basin-02785.herokuapp.com/updateQuantity/${id}`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json",
@@ -69,7 +69,7 @@ const InventoryDetail = () => {
 
 
     return (
-        <div style={{ width: '32rem' }} className='mx-auto mt-3'>
+        <div style={{ width: '32rem' }} className='mx-auto mt-3 container'>
             <div className="card">
                 <img style={{ width: '22rem' }} src={image} className="card-img-top mx-auto" alt="..." />
                 <div className="card-body">

@@ -27,7 +27,7 @@ const Login = () => {
       useEffect(() => {
         if(loginUser){
             console.log(loginUser)
-          const url = 'http://localhost:5000/login';
+          const url = 'https://young-basin-02785.herokuapp.com/login';
           fetch(url, {
                 method: "POST",
                 body: JSON.stringify({

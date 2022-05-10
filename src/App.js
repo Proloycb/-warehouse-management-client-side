@@ -14,6 +14,7 @@ import Login from './pages/Login/Login/Login';
 import Register from './pages/Login/Register/Register';
 import Blogs from './pages/Blogs/Blogs';
 import MyItems from './pages/MyItems/MyItems';
+import AllNews from './pages/AllNews/AllNews';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/blogs' element={<Blogs/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/news' element={<AllNews/>}/>
         <Route path='/inventory/:id' element={
           <RequireAuth>
             <InventoryDetail/>

@@ -8,7 +8,7 @@ const AddNewItem = () => {
     const {register, handleSubmit} = useForm();
     const onSubmit = (data, event) => {
         console.log(data);
-        const url = 'http://localhost:5000/inventory';
+        const url = 'https://young-basin-02785.herokuapp.com/inventory';
         fetch(url, {
             method: 'POST',
             headers: {
@@ -23,8 +23,8 @@ const AddNewItem = () => {
         event.target.reset();
     }
     return (
-        <div className='w-50 mx-auto'>
-            <h2 className='text-primary'>Add New Item</h2>
+        <div style={{height: '100vh'}} className='w-50 mx-auto mt-5'>
+            <h2 className='text-primary text-center'>Add New Item</h2>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
                 <input className='mb-2' placeholder='Name' {...register("name", {required: true, maxLength: 20})} />
                 <input className='mb-2' value={user.email} {...register("email")} />

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import MyItem from '../MyItem/MyItem';
+import Loading from '../Shared/Loading/Loading';
 
 const MyItems = () => {
-    const [user] = useAuthState(auth);
+    const [user, loading, error] = useAuthState(auth);
     const [items, setItems] = useState([]);
+    
 
     useEffect(() => {
         if (user !== null) {
-            const url = 'http://localhost:5000/myInventory'
+            const url = 'https://young-basin-02785.herokuapp.com/myInventory'
             fetch(url, {
                 headers: {
                     'authorization': `${user.email} ${localStorage.getItem("accessToken")}`,
@@ -17,21 +20,27 @@ const MyItems = () => {
                 .then(res => res.json())
                 .then(data => setItems(data));
         }
-    }, [user])
+    }, [user]);
+
+    if(loading || error){
+       return <Loading/>
+    }
+
+    if(items.length === 0){
+        return <Loading/>
+    }
+    
     return (
-        <div>
-            <h2>Your Items: {items.length}</h2>
-            {/* <div className="card">
-                <img style={{ width: '22rem' }} src={image} className="card-img-top mx-auto" alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title">{name}</h5>
-                    <h6 className='card-title'>Id: {_id}</h6>
-                    <p className="card-text mb-1">Price: ${price}</p>
-                    <p className="card-text mb-1">Quantity:<small> {quantity}</small></p>
-                    <p className="card-text mb-1">Supplier:<small> {supplier}</small></p>
-                    <p className="card-text"><small className="text-muted">{description}</small></p>
-                </div>
-                </div> */}
+        <div style={{height: '100vh'}} className='container'>
+            <h2 className='text-center text-success mb-2'>My Items</h2>
+           <div className='d-lg-flex align-items-center justify-content-center'>
+           {
+                items.map(item => <MyItem
+                    key={item._id}
+                    item={item}
+                />)
+            }
+           </div>
         </div>
     );
 };

@@ -11,7 +11,6 @@ const Inventory = ({ inventory }) => {
     }
     return (
         <div className="card-group col">
-
             <div className="card">
                 <img src={image} className="card-img-top" alt="..." />
                 <div className="card-body">

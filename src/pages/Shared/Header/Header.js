@@ -9,13 +9,14 @@ const Header = () => {
     const [user] = useAuthState(auth);
     return (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
+            <Navbar collapseOnSelect expand="lg" sticky='top' bg="success" variant="dark">
                 <Container>
                     <Navbar.Brand as={Link} to='/home'>Gym Equipment</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className='ms-auto'>
                             <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
+                            <Nav.Link as={Link} to="/news">News</Nav.Link>
                             {
                                 user && <>
                                     <Nav.Link as={Link} to="/manage">Manage</Nav.Link>
