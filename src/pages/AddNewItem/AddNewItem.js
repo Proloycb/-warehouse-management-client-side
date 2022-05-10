@@ -6,7 +6,7 @@ import auth from '../../firebase.init';
 const AddNewItem = () => {
     const [user] = useAuthState(auth);
     const {register, handleSubmit} = useForm();
-    const onSubmit = data => {
+    const onSubmit = (data, event) => {
         console.log(data);
         const url = 'http://localhost:5000/inventory';
         fetch(url, {
@@ -20,6 +20,7 @@ const AddNewItem = () => {
         .then(result => {
             console.log(result);
         })
+        event.target.reset();
     }
     return (
         <div className='w-50 mx-auto'>

@@ -12,6 +12,10 @@ const Login = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate();
     const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+    let errorElement;
+    
     const [user] = useAuthState(auth);
     const [
         signInWithEmailAndPassword,
@@ -20,8 +24,9 @@ const Login = () => {
         error,
       ] = useSignInWithEmailAndPassword(auth);
 
-    useEffect(() => {
+      useEffect(() => {
         if(loginUser){
+            console.log(loginUser)
           const url = 'http://localhost:5000/login';
           fetch(url, {
                 method: "POST",
@@ -34,15 +39,11 @@ const Login = () => {
             })
             .then(res => res.json())
             .then(data => {
-                localStorage.setItem('accessToken', data.Token)
+                localStorage.setItem('accessToken', data.token)
                 navigate(from, {replace: true});
             })
         }
     },[loginUser])
-
-    const from = location.state?.from?.pathname || "/";
-    let errorElement;
-
     
     
 
@@ -54,10 +55,6 @@ const Login = () => {
 
       if(error) {
           errorElement = <p className='text-danger'>Error: {error?.message}</p>
-      }
-
-      if(user) {
-        //   navigate(from, {replace: true});
       }
       
 
