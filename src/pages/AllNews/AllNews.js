@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import News from '../News/News';
+import Loading from '../Shared/Loading/Loading';
 
 const AllNews = () => {
     const [allNews, setAllNews] = useState([]);
@@ -9,6 +10,10 @@ const AllNews = () => {
             .then(res => res.json())
             .then(data => setAllNews(data));
     }, [])
+
+    if(allNews.length === 0){
+        return <Loading/>
+    }
     return (
         <div className='container'>
             <h3 className='text-center text-success mt-5 mb-5'>Latest News</h3>

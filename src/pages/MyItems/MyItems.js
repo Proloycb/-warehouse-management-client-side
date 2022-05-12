@@ -38,6 +38,7 @@ const MyItems = () => {
                 items.map(item => <MyItem
                     key={item._id}
                     item={item}
+                    setItems={setItems}
                 />)
             }
            </div>

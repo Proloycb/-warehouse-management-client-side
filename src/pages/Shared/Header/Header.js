@@ -26,7 +26,7 @@ const Header = () => {
                             }
                             {
                                 user ?
-                                    <button onClick={() => signOut(auth)} className="btn btn-primary">SignOut</button>
+                                    <button onClick={() => signOut(auth)} className="btn btn-success">SignOut</button>
                                     :
                                     <Nav.Link as={Link} to="/login" >
                                         Login

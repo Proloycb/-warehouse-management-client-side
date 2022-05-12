@@ -1,7 +1,7 @@
 import React from 'react';
 import useInventories from '../../hooks/useInventories';
 
-const MyItem = ({item}) => {
+const MyItem = ({item, setItems}) => {
     const [inventories, setInventories] = useInventories();
     const { _id, name, image, description, price, quantity } = item;
 
@@ -16,6 +16,7 @@ const MyItem = ({item}) => {
             .then(data => {
                 const remaining = inventories.filter(inventory => inventory._id !== id);
                 setInventories(remaining);
+                setItems([]);
             })
         }
     }
